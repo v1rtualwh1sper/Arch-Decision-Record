@@ -1,0 +1,11 @@
+#!/bin/bash
+# ADD TO .git/hooks/pre-commit
+# Empêche les commits si un ADR est invalide
+python3 scripts/validate_adr.py
+status=$?
+if [ $status -ne 0 ]; then
+  echo "Commit refused: ADR validation failed."
+  exit 1
+fi
+exit 0
+
